@@ -1,6 +1,7 @@
 <?php
 
-$baza = mysqli_connect("localhost","root","","web_shop");
+require_once("baza.php");
+
 
 if(mysqli_connect_error())
 {
@@ -27,9 +28,10 @@ if($emailPostoji->num_rows > 0)
 }
 
 $sifra = password_hash($_POST["sifra"], PASSWORD_BCRYPT);
-  
 
 $insertKorisnik = "INSERT INTO korisnici(email,sifra)
 VALUES ('$email','$sifra')";
 
 $baza->query($insertKorisnik);
+
+$containGmail = $baza->query("SELECT * FROM korisnici WHERE email LIKE '%@gmail%' ");
