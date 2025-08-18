@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Index</title>
+
+</head>
+<body>
+    <form action="modeli/unosProizvoda.php" method="post">
+      <input type="text" name="ime" placeholder="Ime proizvoda"><br>
+      <input type="text" name="opis" placeholder="Opis proizvoda"><br>
+      <input type="text" name="cena" placeholder="Cena proizvoda"><br>
+      <input type="text" name="kolicina" placeholder="Kolicina proizvoda"><br>
+      <button>Unesi</button>
+    </form>
+      <br>
+    <form action="modeli/pretragaProizvoda.php" method="get">
+      <input type="text" name="trazi" placeholder="Pretrazi proizvode">
+      <button>Trazi</button>
+    </form>
+</body>
+
+</html>
