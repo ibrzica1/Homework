@@ -1,3 +1,12 @@
+<?php
+  if(session_status() == PHP_SESSION_NONE)
+    {
+      session_start();
+    }
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,13 +17,21 @@
 </head>
 
 <body>
-  <h3>Login</h3>
+  
+   <?php if(isset($_SESSION['ime'])): ?>
+    <h3>Dobrodosao nazad <?=$_SESSION['ime']?></h3>
+    <a href="modeli/logout.php">Logout</a>
+    <a href="index.php">Glavna stranica</a>
+   <?php else: ?>
+    <h3>Login</h3>
   <form action="modeli/loginUser.php" method="POST">
     <input type="email" name="email" placeholder="Email">
     <input type="text" name="lozinka" placeholder="Lozinka">
     <button>Login</button>
   </form>
-  <a href="modeli/registracijaUser.php">Registracija</a>
+  <a href="registracija.php">Registracija</a>
+   <?php endif; ?> 
+  
 </body>
 
 </html>

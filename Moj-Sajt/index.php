@@ -1,3 +1,10 @@
+<?php
+  if(session_status() == PHP_SESSION_NONE)
+  {
+    session_start();
+  }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,8 +14,13 @@
 
 </head>
 <body>
-    <form action="modeli/unosProizvoda.php" method="post">
-      <input type="text" name="ime" placeholder="Ime proizvoda"><br>
+
+    <?php if(isset($_SESSION['ime'])): ?>
+      <h3 style="margin-bottom:5px;"><?=$_SESSION['ime']?></h3>
+      <a href="modeli/logout.php">Logout</a>
+      
+      <form action="modeli/unosProizvoda.php" method="post">
+      <br><input type="text" name="ime" placeholder="Ime proizvoda"><br>
       <input type="text" name="opis" placeholder="Opis proizvoda"><br>
       <input type="text" name="cena" placeholder="Cena proizvoda"><br>
       <input type="text" name="kolicina" placeholder="Kolicina proizvoda"><br>
@@ -19,6 +31,22 @@
       <input type="text" name="trazi" placeholder="Pretrazi proizvode">
       <button>Trazi</button>
     </form>
+    <?php else: ?>
+      <a href="login.php">Login</a>
+      <form action="modeli/unosProizvoda.php" method="post">
+      <br><input type="text" name="ime" placeholder="Ime proizvoda"><br>
+      <input type="text" name="opis" placeholder="Opis proizvoda"><br>
+      <input type="text" name="cena" placeholder="Cena proizvoda"><br>
+      <input type="text" name="kolicina" placeholder="Kolicina proizvoda"><br>
+      <button>Unesi</button>
+    </form>
+      <br>
+    <form action="modeli/pretragaProizvoda.php" method="get">
+      <input type="text" name="trazi" placeholder="Pretrazi proizvode">
+      <button>Trazi</button>
+    </form>
+    <?php endif; ?>
+    
 </body>
 
 </html>

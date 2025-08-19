@@ -1,5 +1,10 @@
 <?php
 
+if(session_status() == PHP_SESSION_NONE)
+{
+  session_start();
+}
+
 if(!isset($_POST["ime"]) || empty($_POST["ime"]))
 {
   echo("Niste unijeli polje ime"."<br>");
@@ -50,6 +55,7 @@ $imeUspjesnaRegistracija = false;
 $emailUspjesnaRegistracija = false;
 $lozinkaUspjesnaRegistracija = false;
 
+
 $rezultatIme = $baza->query("SELECT * FROM user WHERE ime = '$ime' ");
 
 if($rezultatIme->num_rows > 0)
@@ -85,6 +91,7 @@ else
 
       $baza->query("INSERT INTO user(ime,email,lozinka)
       VALUES ('$ime','$email','$lozinka') ");
+      $_SESSION['ime'] = $ime;
     }
   }
 }
@@ -102,7 +109,7 @@ else
 <body>
   <?php if($imeUspjesnaRegistracija && $lozinkaUspjesnaRegistracija && $emailUspjesnaRegistracija): ?>
     <h2>Uspjesno registriran</h2>
-    <a href="index.php">Na glavnu stranicu</a>
+    <a href="../index.php">Na glavnu stranicu</a>
   <?php else: ?>
     <a href="../registracija.php">Nazad na registraciju</a>
   <?php endif; ?>

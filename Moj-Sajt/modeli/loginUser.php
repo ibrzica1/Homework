@@ -1,5 +1,9 @@
 <?php
 
+if(session_status() == PHP_SESSION_NONE)
+{
+  session_start();
+}
 
 if(!isset($_POST["email"]) || empty($_POST["email"]))
 {
@@ -50,8 +54,8 @@ if(!password_verify($lozinka,$lozinkaIzBaze))
 }
 else
 {
-  echo("Dobrodosao nazad {$korisnik['ime']} "."<br>");
-  echo("<a href='../index.php'>Na glavnu stranicu</a>");
+  $_SESSION['ime'] = $korisnik['ime'];
+  header("Location: ../index.php");
   exit();
 }
 
