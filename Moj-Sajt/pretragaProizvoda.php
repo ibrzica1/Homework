@@ -3,7 +3,7 @@
 if(!isset($_GET["trazi"]) || empty($_GET["trazi"]))
 {
    echo"Niste unijeli trazi"."<br>";
-   echo "<a href='../index.php'>Natrag na glavnu stranicu</a>"."<br>";
+   echo "<a href='index.php'>Natrag na glavnu stranicu</a>"."<br>";
    exit();
 }
 else
@@ -11,14 +11,14 @@ else
   $trazi = $_GET["trazi"];
 }
 
-require_once "baza.php";
+require_once "modeli/baza.php";
 
 $rezultat = $baza->query("SELECT * FROM proizvodi WHERE ime LIKE '%$trazi%' OR opis LIKE '%$trazi%' ");
 
 if($rezultat->num_rows < 1)
 {
   echo "Nema rezultata"."<br>";
-  echo "<a href='../index.php'>Natrag na glavnu stranicu</a>"."<br>";
+  echo "<a href='index.php'>Natrag na glavnu stranicu</a>"."<br>";
   exit();
 }
 else
@@ -42,9 +42,9 @@ else
     <h3><?= $proizvod["ime"] ?></h3>
     <p><?= $proizvod["opis"] ?></p>
     <p><?= $proizvod["cena"] ?></p>
-    <a href="../proizvod.php?id=<?=$proizvod['id']?>">Pogledaj proizvod</a><br>
+    <a href="proizvod.php?id=<?=$proizvod['id']?>">Pogledaj proizvod</a><br>
   <?php endforeach; ?>
-  <a href="../index.php">Natrag na glavnu stranicu</a>
+  <a href="index.php">Natrag na glavnu stranicu</a>
 </body>
 
 </html>

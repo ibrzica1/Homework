@@ -86,7 +86,7 @@ else
 
       $baza->query("INSERT INTO user(ime,email,lozinka)
       VALUES ('$ime','$email','$lozinka') ");
-      $_SESSION['ime'] = $ime;
+      $_SESSION['user_id'] = $ime;
       echo("Uspjesno ste registrirani"."<br>");
       echo("<a href='../index.php'>Glavna stranica</a>");
       exit();

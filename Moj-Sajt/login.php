@@ -18,9 +18,9 @@
 
 <body>
   
-   <?php if(isset($_SESSION['ime'])): ?>
-    <h3>Dobrodosao nazad <?=$_SESSION['ime']?></h3>
-    <a href="modeli/logout.php">Logout</a>
+   <?php if(isset($_SESSION['ulogovan'])): ?>
+    <h3>Dobrodosao nazad <?=$_SESSION['user_id']?></h3>
+    <a href="logout.php">Logout</a>
     <a href="index.php">Glavna stranica</a>
    <?php else: ?>
     <h3>Login</h3>
