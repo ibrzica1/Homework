@@ -51,68 +51,47 @@ else
 
 require_once("baza.php");
 
-$imeUspjesnaRegistracija = false;
-$emailUspjesnaRegistracija = false;
-$lozinkaUspjesnaRegistracija = false;
-
 
 $rezultatIme = $baza->query("SELECT * FROM user WHERE ime = '$ime' ");
 
 if($rezultatIme->num_rows > 0)
 {
   echo "Ime vec postoji u bazi"."<br>";
-  $imeUspjesnaRegistracija = false;
+  echo("<a href='../registracija.php'>Nazad na registraciju</a>");
+  exit();
 }
 else
 {
-  $imeUspjesnaRegistracija = true;
+  
 
   $rezultatEmail = $baza->query("SELECT * FROM user WHERE email = '$email' ");
 
   if($rezultatEmail->num_rows > 0)
   {
     echo "Email vec postoji u bazi"."<br>";
-    $emailUspjesnaRegistracija = false;
+    echo("<a href='../registracija.php'>Nazad na registraciju</a>");
+  exit();
   }
   else
   {
-    $emailUspjesnaRegistracija = true;
-
-
     if($lozinka != $ponovljenaLozinka)
     {
       echo "Lozinka i ponovljena lozinka nisu iste"."<br>";
-      $lozinkaUspjesnaRegistracija = false;
+      echo("<a href='../registracija.php'>Nazad na registraciju</a>");
+      exit();
     }
     else
     {
-      $lozinkaUspjesnaRegistracija = true;
       $lozinka = password_hash($lozinka, PASSWORD_BCRYPT);
 
       $baza->query("INSERT INTO user(ime,email,lozinka)
       VALUES ('$ime','$email','$lozinka') ");
       $_SESSION['ime'] = $ime;
+      echo("Uspjesno ste registrirani"."<br>");
+      echo("<a href='../index.php'>Glavna stranica</a>");
+      exit();
     }
   }
 }
-?>
 
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Registracija</title>
-</head>
-
-<body>
-  <?php if($imeUspjesnaRegistracija && $lozinkaUspjesnaRegistracija && $emailUspjesnaRegistracija): ?>
-    <h2>Uspjesno registriran</h2>
-    <a href="../index.php">Na glavnu stranicu</a>
-  <?php else: ?>
-    <a href="../registracija.php">Nazad na registraciju</a>
-  <?php endif; ?>
-</body>
-
-</html>

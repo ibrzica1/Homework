@@ -7,7 +7,7 @@ if( !isset($_GET['id']) || empty($_GET['id']))
   exit();
 }
 
-require_once "baza.php";
+require_once "modeli/baza.php";
 
 $idProizvoda = $_GET['id'];
 
@@ -35,7 +35,7 @@ $proizvod = $rezultat->fetch_assoc();
 <body>
     <h1><?= $proizvod["ime"] ?></h1>
     <p><?= $proizvod["opis"] ?></p>
-    <a href='../index.php'>Natrag na glavnu stranicu</a>
+    <a href='index.php'>Natrag na glavnu stranicu</a>
 </body>
 
 </html>

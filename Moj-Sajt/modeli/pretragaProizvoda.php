@@ -42,7 +42,7 @@ else
     <h3><?= $proizvod["ime"] ?></h3>
     <p><?= $proizvod["opis"] ?></p>
     <p><?= $proizvod["cena"] ?></p>
-    <a href="proizvod.php?id=<?=$proizvod['id']?>">Pogledaj proizvod</a><br>
+    <a href="../proizvod.php?id=<?=$proizvod['id']?>">Pogledaj proizvod</a><br>
   <?php endforeach; ?>
   <a href="../index.php">Natrag na glavnu stranicu</a>
 </body>

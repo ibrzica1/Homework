@@ -46,25 +46,16 @@ $baza->query($insertProizvod);
 $rezultatNovi = $baza->query("SELECT * FROM proizvodi");
 $noviBrojBaza = $rezultatNovi->num_rows;
 
-?>
+if($noviBrojBaza > $stariBrojBaza)
+{
+  echo ("Uspjesno ste unijeli proizvod"."<br>");
+  echo ("<a href='../index.php'>Natrag na stranicu</a>");
+  exit();
+}
+else
+{
+  echo("Niste uspjeli unijeti proizvod"."<br>");
+  echo("<a href='../index.php'>Natrag na stranicu</a>");
+  exit();
+}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Unos proizvoda</title>
-</head>
-
-<body>
-    
-<?php if($noviBrojBaza > $stariBrojBaza): ?>
-  <h3>Uspjesno ste unijeli proizvod</h3>
-  <a href="../index.php">Natrag na stranicu</a>
-<?php else: ?>
-  <h3>Niste uspjeli unijeti proizvod</h3>
-  <a href="../index.php">Natrag na stranicu</a>
-<?php endif; ?>
-</body>
-
-</html>
