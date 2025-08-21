@@ -54,7 +54,8 @@ if(!password_verify($lozinka,$lozinkaIzBaze))
 }
 else
 {
-  $_SESSION['user_id'] = $korisnik['ime'];
+  $_SESSION['ime'] = $korisnik['ime'];
+  $_SESSION['user_id'] = $korisnik['id'];
   $_SESSION['ulogovan'] = true;
   header("Location: ../index.php");
   exit();

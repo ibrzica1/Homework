@@ -1,5 +1,10 @@
 <?php
 
+if(session_status() == PHP_SESSION_NONE)
+  {
+    session_start();
+  }
+
 if( !isset($_GET['id']) || empty($_GET['id']))
 {
   echo "Fali ID proizvoda"."<br>";
@@ -33,9 +38,36 @@ $proizvod = $rezultat->fetch_assoc();
 </head>
 
 <body>
+  <a href="index.php">Glavna</a>
+  <?php if(isset($_SESSION['ulogovan'])): ?>
+    <a href="logout.php">Logout</a>
+    <a href="korpa.php">Korpa</a>
+  <?php else: ?>
+    <a href="login.php">Login</a>
+  <?php endif; ?>
+
     <h1><?= $proizvod["ime"] ?></h1>
     <p><?= $proizvod["opis"] ?></p>
-    <a href='index.php'>Natrag na glavnu stranicu</a>
+
+    <?php if($proizvod['kolicina'] == 0): ?>
+        <p>Nema na stanju</p>
+    <?php else: ?>
+        <p>Ima na stanju</p>
+    <?php endif; ?>
+
+    <?php if(isset($_SESSION['ulogovan'])): ?>
+
+      <form action="modeli/dodavanjeKorpa.php" method="post">
+        <input type="number" name="kolicina" placeholder="Unesite kolicinu proizvoda">
+        <input type="hidden" name="id_proizvoda" value="<?= $proizvod["id"] ?>">
+        <button>Dodaj u korpu</button>
+      </form>
+
+    <?php else: ?>
+      <a href="login.php">Kliknite da se ulogujete kako bi dodali u korpu</a><br>
+    <?php endif; ?>
+    
+    <br><a href='index.php'>Natrag na glavnu stranicu</a>
 </body>
 
 </html>

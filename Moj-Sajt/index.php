@@ -16,8 +16,9 @@
 <body>
 
     <?php if(isset($_SESSION['ulogovan'])): ?>
-      <h3 style="margin-bottom:5px;"><?=$_SESSION['user_id']?></h3>
+      <h3 style="margin-bottom:5px;"><?=$_SESSION['ime']?></h3>
       <a href="logout.php">Logout</a>
+      <a href="korpa.php">Korpa</a>
       
       <form action="modeli/unosProizvoda.php" method="post">
       <br><input type="text" name="ime" placeholder="Ime proizvoda"><br>
@@ -27,7 +28,7 @@
       <button>Unesi</button>
     </form>
       <br>
-    <form action="modeli/pretragaProizvoda.php" method="get">
+    <form action="pretragaProizvoda.php" method="get">
       <input type="text" name="trazi" placeholder="Pretrazi proizvode">
       <button>Trazi</button>
     </form>
