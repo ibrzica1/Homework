@@ -36,7 +36,7 @@ class Images extends DB
     return uniqid().".".$extension;
   }
 
-  public function isValidExtension(string $image): bool
+  public function isValidExtension(array $image): bool
   {
     $imageType = pathinfo($image['name'], PATHINFO_EXTENSION);
 
